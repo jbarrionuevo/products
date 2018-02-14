@@ -16,9 +16,9 @@ router.use(methodOverride(function(req, res){
 //build the REST operations at the base for blobs
 //this will be accessible from http://127.0.0.1:3000/blobs if the default route for / is left unchanged
 router.route('/')
-    //GET all blobs
+    //GET all products
     .get(function(req, res, next) {
-        //retrieve all blobs from Monogo
+        //retrieve all products from Monogo
         mongoose.model('Product').find({}, function (err, products) {
               if (err) {
                   return console.error(err);
@@ -34,7 +34,7 @@ router.route('/')
                     },
                     //JSON response will show all blobs in JSON format
                     json: function(){
-                        res.json(infophotos);
+                        res.json(products);
                     }
                 });
               }
