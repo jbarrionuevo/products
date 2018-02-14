@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+    h1.
+        Product ID #{product._id}
+    form(action='/products/#{product._id}/edit',method='post',name='updateproduct',enctype='application/x-www-form-urlencoded')
+        p Name:
+            input#inputName(type='text', value='#{product.name}', name='name')
+        p Type:
+            input#inputType(type='number', value='#{product.type}', name='type')
+        p created:
+            input#inputCreated(type='date', value='#{productcreated}', name='created')
+        p Are you Available?:
+            input#inputIsAvailable(type='checkbox', name='available', checked=('#{product.available}'==='true' ? "checked" : undefined))
+        p
+            input(type='hidden',value='PUT',name='_method')
+        p
+            button#btnSubmit(type='submit').
+                Update

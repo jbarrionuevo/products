@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+    h1.
+        #{title}
+    form#formAddProduct(name="addproduct",method="post",action="/products")
+        p Name:
+            input#inputName(type="text", placeholder="ex. Artifact", name="name")
+        p Type:
+            input#inputType(type="number", placeholder="ex. 123456", name="type")
+        p Created:
+            input#inputCreated(type="date", name="created")
+        p Are You Available?:
+            input#inputAvailable(type="checkbox", name="available")
+        p
+            button#btnSubmit(type="submit") submit

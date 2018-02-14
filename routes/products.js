@@ -46,7 +46,8 @@ router.route('/')
         var name = req.body.name;
         var type = req.body.type;
         var  created = req.body.created;
-        var company = req.body.company;
+        //var company = req.body.company;
+        
         var available = req.body.available;
         //call the create function for our database
         mongoose.model('Product').create({
@@ -119,7 +120,7 @@ router.route('/')
           if (err) {
             console.log('GET Error: There was a problem retrieving: ' + err);
           } else {
-            console.log('GET Retrieving ID: ' + blob._id);
+            console.log('GET Retrieving ID: ' + product._id);
             var productcreated = product.created.toISOString();
             productcreated = productcreated.substring(0, productcreated.indexOf('T'))
             res.format({
@@ -173,7 +174,7 @@ router.route('/')
           var name = req.body.name;
           var type = req.body.type;
           var  created = req.body.created;
-          var company = req.body.company;
+          //var company = req.body.company;
           var available = req.body.available;
 
          //find the document by ID
@@ -212,7 +213,7 @@ router.route('/')
                   return console.error(err);
               } else {
                   //remove it from Mongo
-                  blob.remove(function (err, product) {
+                  product.remove(function (err, product) {
                       if (err) {
                           return console.error(err);
                       } else {
