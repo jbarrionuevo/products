@@ -47,7 +47,7 @@ router.route('/')
         var type = req.body.type;
         var  created = req.body.created;
         //var company = req.body.company;
-        
+
         var available = req.body.available;
         //call the create function for our database
         mongoose.model('Product').create({
@@ -180,7 +180,7 @@ router.route('/')
          //find the document by ID
               mongoose.model('Product').findById(req.id, function (err, product) {
                   //update it
-                  blob.update({
+                  product.update({
                     name : name,
                     type : type,
                     created : created,

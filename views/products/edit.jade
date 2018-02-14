@@ -8,9 +8,9 @@ block content
             input#inputName(type='text', value='#{product.name}', name='name')
         p Type:
             input#inputType(type='number', value='#{product.type}', name='type')
-        p created:
+        p Created:
             input#inputCreated(type='date', value='#{productcreated}', name='created')
-        p Are you Available?:
+        p Available?:
             input#inputIsAvailable(type='checkbox', name='available', checked=('#{product.available}'==='true' ? "checked" : undefined))
         p
             input(type='hidden',value='PUT',name='_method')
