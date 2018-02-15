@@ -145,7 +145,7 @@ router.route('/:id')
             });
           },
           json: function() {
-            console.log('Producing JSON output: ');
+            console.log('Producing JSON output: ' + product);
             res.json(product);
           }
         });
