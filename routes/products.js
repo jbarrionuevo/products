@@ -7,6 +7,9 @@ var express = require('express'),
 router.use(bodyParser.urlencoded({
   extended: true
 }))
+router.use(bodyParser.json({
+  extended: true
+}))
 router.use(methodOverride(function(req, res) {
   if (req.body && typeof req.body === 'object' && '_method' in req.body) {
     // look in urlencoded POST bodies and delete it
@@ -202,6 +205,10 @@ router.put('/:id/edit', function(req, res) {
   //find the document by ID
   mongoose.model('Product').findById(req.id, function(err, product) {
     //update it
+    console.log('Updating Product');
+    console.log('Name: '+ name);
+    console.log('Type: '+ type);
+    console.log('Created: '+ created);
     product.update({
       name: name,
       type: type,
@@ -211,16 +218,33 @@ router.put('/:id/edit', function(req, res) {
       if (err) {
         res.send("There was a problem updating the information to the database: " + err);
       } else {
-        //HTML responds by going back to the page or you can be fancy and create a new view that shows a success page.
-        res.format({
-          html: function() {
-            res.redirect("/product/" + product._id);
-          },
-          //JSON responds showing the updated values
-          json: function() {
-            res.json(product);
-          }
-        });
+            mongoose.model('Product').findById(req.id, function(err, updatedProduct) {
+                console.log('updatedProduct: ' + updatedProduct.created);
+                //HTML responds by going back to the page or you can be fancy and create a new view that shows a success page.
+                res.format({
+                  html: function() {
+                    res.redirect("/product/" + product._id);
+                  },
+                  //JSON responds showing the updated values
+                  json: function() {
+                    console.log('Updating Product JSON');
+                    res.json(updatedProduct);
+                    console.log('updatedProduct: ' + updatedProduct.created);
+                  }
+                });
+
+            });
+        // //HTML responds by going back to the page or you can be fancy and create a new view that shows a success page.
+        // res.format({
+        //   html: function() {
+        //     res.redirect("/product/" + product._id);
+        //   },
+        //   //JSON responds showing the updated values
+        //   json: function() {
+        //     console.log('Updating Product JSON');
+        //     res.json(product);
+        //   }
+        // });
       }
     })
   });
