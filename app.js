@@ -14,6 +14,7 @@ var app = express();
 
 var routes = require('./routes/index');
 var products = require('./routes/products');
+
 app.use('/', routes);
 app.use('/products', products);
 
